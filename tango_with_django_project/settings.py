@@ -13,12 +13,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = (os.path.abspath(__file__))
-TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'templates')
-STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
+BASE_DIR = os.path.dirname(__file__)
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
-
 
 
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
@@ -48,9 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rango',
     'CHOAPP',
+
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,6 +75,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+
+
             ],
         },
     },
@@ -90,8 +92,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(os.path.dirname(os.path.dirname(__file__)), 'db.sqlite3'),
+
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

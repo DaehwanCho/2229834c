@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
 
+{% load mediafiles %} <!-- New line -->
+
+<html>
     <head>
         <title>Rango</title>
     </head>
 
     <body>
-        <h1>Rango says...</h1>
+        <h1>Rango is about...</h1>
+
         <div>
-            hey there partner! <br /> 
+            <br>hey!!<br/>
             <strong>{{ boldmessage }}</strong><br />
         </div>
+
         <div>
-            <a href="/rango/about/">About</a><br />
+
+  <img src="{% media "image/rango.jpg" %}" alt="Picture of Rango" />
+
+
         </div>
     </body>
 
