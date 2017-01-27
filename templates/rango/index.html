@@ -11,11 +11,15 @@
         <div>
             hey there partner!
         </div>
-        
+          <div>
+           <H3><B>Most LIKED Categories</B></H3>
+        </div>
+
         <div>
         {% if categories %}
         <ul>
             {% for category in categories %}
+
             <!-- Following line changed to add an HTML hyperlink -->
             <li>
             <a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
@@ -26,7 +30,27 @@
             <strong>There are no categories present.</strong>
         {% endif %}
         </div>
-        
+
+        <div>
+           <H3><B>Most VIEWed Page</B></H3>
+        </div>
+
+        <div>
+        {% if pages %}
+        <ul>
+            {% for page in pages  %}
+
+            <!-- Following line changed to add an HTML hyperlink -->
+            <li>
+            <a href={{page.url}}>{{ page.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no pages  present.</strong>
+        {% endif %}
+        </div>
+
         <div>
             <a href="/rango/about/">About Rango</a><br />
             <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" /> 

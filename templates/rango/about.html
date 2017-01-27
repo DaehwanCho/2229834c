@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+
+{% load staticfiles %}
 <html>
     <head>
         <title>Rango</title>
@@ -15,7 +17,7 @@
 
         <div>
 
-  <img src="{% media "image/cat.jpg" %}" alt="Picture of Rango" />
+ <img src="{{ MEDIA_URL}}cat.jpg">.
 
 
         </div>
