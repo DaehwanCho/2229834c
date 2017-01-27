@@ -42,9 +42,7 @@ class Page(models.Model):
     url = models.URLField()
     views = models.IntegerField(default=0, unique=False)
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Page, self).save(*args, **kwargs)
+
     def __str__(self):  # For Python 2, use __unicode__ too
         return self.title
 
