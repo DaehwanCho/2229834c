@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% extends 'rango/base.html'%}
 
 {% load staticfiles %}
 <html>
@@ -8,10 +8,11 @@
     </head>
 
     <body>
-        <h1>Rango is about...</h1>
-
+        <h1>Rango says here is the about page</h1>
+		
         <div>
             <br>hey!!<br/>
+			 <a href="/rango/">Index</a><br />
             <strong>{{ boldmessage }}</strong><br />
         </div>
 
@@ -21,6 +22,10 @@
 
 
         </div>
+		<div>
+		<img src="{% static "images/DAEHWANCHO.jpg" %}" alt="Picture of fire" /> 
+
+		</div>
     </body>
 
 </html>
