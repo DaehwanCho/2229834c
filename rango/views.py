@@ -5,6 +5,9 @@ from rango.models import Category
 from rango.models import Page
 from rango.forms import PageForm
 
+
+
+
 def add_page(request, category_name_slug):
     try:
         category = Category.objects.get(slug=category_name_slug)
@@ -72,6 +75,11 @@ def index(request):
 def about(request):
     category_list = Category.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list}
+    #print out whether the method is a GET or a POST
+    print(request.method)
+    #prints out the user name, if no one is logged in it prints 'SnonymousUser'
+
+    print(request.user)
 
     return render(request, 'rango/about.html', context_dict)
 
