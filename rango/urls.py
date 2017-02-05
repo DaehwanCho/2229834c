@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from rango import views
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 app_name = 'rango'
 
@@ -31,6 +30,9 @@ urlpatterns = [
 				  url(r'^page/(?P<page_name_slug>[\w\-]+)/$',
                     views.show_page, name='show_page'),
 				  url(r'^register/$',views.register,name='register'),
+				   url(r'^login/$', views.user_login, name='login'),
+					url(r'^restricted/', views.restricted, name='restricted'),
+					url(r'^logout/$', views.user_logout, name='logout'),
 
 
 
