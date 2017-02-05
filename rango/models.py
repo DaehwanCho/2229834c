@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.template.defaultfilters import slugify
-
+from django.contrib.auth.models import User
 
 slug = models.SlugField(blank=True)
 slug = models.SlugField(unique=True)
@@ -21,18 +21,22 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
-
+	def __unicode__(self):
+		return self.username
     
 
 
-class Gender(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-
-    class Meta:
-        verbose_name_plural = 'gender'
-
-    def __str__(self):  # For Python 2, use __unicode__ too
-        return self.name
+class UserProfile(models.Model):
+	 # This line is required. Links UserProfile to a User model instance.
+	 user = models.OneToOneField(User)
+	 # The additional attributes we wish to include.
+	 website = models.URLField(blank=True)
+	 picture = models.ImageField(upload_to='profile_images', blank=True)
+	 # Override the __unicode__() method to return out something meaningful!
+	 def __str__(self):
+		return self.user.username
+	 def __unicode__(self):
+		return self.user.username
 
 
 
@@ -45,5 +49,8 @@ class Page(models.Model):
 
     def __str__(self):  # For Python 2, use __unicode__ too
         return self.title
+		
+	def __unicode__(self):
+		return self.title
 
 # Create your models here.
