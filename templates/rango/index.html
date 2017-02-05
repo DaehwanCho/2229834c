@@ -15,15 +15,15 @@
         </div>
 
 		<div>
-		<li><a href="{% url 'add_category' %}">Add a New Category</a></li>
+		<li><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
         {% if categories %}
         <ul>
                 <H3><B>Most LIKED Categories</B></H3>
             {% for category in categories %}
                 {% if category %}
-            <!-- Following line changed to add an HTML hyperlink -->
+       
             <li>
-               <a href="{% url 'show_category' category.slug % }">
+               <a href="{% url 'rango:show_category' category.slug % }">
                 {{ category.name }}
             </a>
             </li>
@@ -61,8 +61,9 @@
         <div>
             <a href="{% url 'rango:about'%}"About> </a><br />
 
-
-        <img src="{% static "images / rango.jpg" %}" alt="Picture of Rango"/>
+		</div>
+		<div>
+        <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango"/>
         </div>
 
 
