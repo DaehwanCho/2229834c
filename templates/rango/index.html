@@ -1,70 +1,50 @@
-{% extends 'rango/base.html'%}
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
 
-	{% block title_block %}
-		Rango
-	{% endblock %}
+{% block title_block %}
+    Rango
+{% endblock %}
 
-		{% block body_block %}
-		
-       <div>
-	 
+{% block body_block %}
+    <div>
         {% if user.is_authenticated %}
-         <H1><B> Rango says...  hello {{ user.username }}!</B></H1>   
-		<ul><li><a href="{% url 'rango:add_category' %}"> Add a New Category</a></ul></li>
+           <H1><B> Rango says...  hello {{ user.username }}!</B></H1>   
+		<ul><li><a href="{% url 'rango:add_category'  %}"> Add a New Category</a></ul></li>
         {% else %}
-          <H1><B> Rango says...  hello somebody!</H1></B>
+            <H1><B> Rango says...  hello somebody!</H1></B>
+        {% endif %}
+    </div>
+	<p>visits:{{visits}}</p>
+    <div>
+        {% if categories %}
+            <h2><B>{{ "Most Liked Categories" }}</h2></B>
+            <ul>
+                {% for category in categories %}
+
+                    <li>
+                        <a href="{% url 'rango:show_category' category.slug %}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+		{% else %}
+            <strong>{{"There are no categories present."}}</strong>
         {% endif %}
 		
+        {% if pages %}
+            <H2><B>{{"Most VIEWED Page"}}</B></H2>
+            <ul>
+                {% for page in pages %}
+                    <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>{{"There are no categories present."}}</strong>
+        {% endif %}
     </div>
 
-	
-
-		<div>
-        {% if categories %}
-        <ul>
-		<div>
-             <H3><B>Most LIKED Categories</B></H3></div>
-            {% for category in categories %}
-                {% if category %}
-       
-            <li>
-               <a href="{% url 'rango:show_category' category.slug % }">
-                {{ category.name }}
-            </a>
-            </li>
-            {% endif %}
-            {% endfor %}
-			
-        </ul>
-        {% else %}
-            <strong>There are no categories present.</strong>
-        {% endif %}
-
-        </div>
-
-
-
-      
-
-        <div>
-        {% if pages %}
-        <ul>
-		<H3><B>Most VIEWED Page</B></H3>
-            {% for page in pages  %}
-
-         
-            <li>
-            <a href={{page.url}}> {{ page.title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-            <strong>There are no pages  present.</strong>
-        {% endif %}
-        </div>
-
-        <div>
+    <div>
             <a href="{% url 'rango:about'%}"About> </a><br />
 
 		</div>
@@ -73,5 +53,4 @@
         </div>
 
 
-
-            {% endblock %}
+{% endblock %}
