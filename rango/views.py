@@ -175,35 +175,28 @@ def add_category(request):
 
 def index(request):
     request.session.set_test_cookie()
-
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'pages': page_list}
-    # Obtain our Response object early so we can add cookie information.
+
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
-    response = render(request, 'rango/index.html', context_dict)
 
-    # Call function to handle the cookies
-    
-    # Return response back to the user, updating any cookies that need changed.
+    response = render(request, 'rango/index.html', context=context_dict)
     return response
-	
-	
 
 	
 def about(request):
+    request.session.set_test_cookie()
+    visitor_cookie_handler(request)
 
-	if request.session.get('visits'):
-		count = request.session.get('visits')
-	elif request.session.test_cookie_worked():
-			print("TEST COOKIE WORKED!")
-			##???request.session.delete_test_cookie():
-	else:	
-		count = 0
+    context_dict = {'boldmessage': "This tutorial has been put together by DAEHWNACHO"}
 
-	return render(request, 'rango/about.html', {'visits': count}) #"Rango says here is the about page")# <a href='rango/'>Index</a>))
-	
+    context_dict['visits'] = request.session['visits']
+
+    response = render(request, 'rango/about.html', context=context_dict)
+    return response
+
 	
 
 def show_category(request, category_name_slug):

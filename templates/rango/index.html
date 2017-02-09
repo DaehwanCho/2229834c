@@ -2,19 +2,19 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    Rango
+    Rango -
 {% endblock %}
 
 {% block body_block %}
     <div>
         {% if user.is_authenticated %}
            <H1><B> Rango says...  hello {{ user.username }}!</B></H1>   
-		<ul><li><a href="{% url 'rango:add_category'  %}"> Add a New Category</a></ul></li>
+		<ul><li><a href="{% url 'add_category'  %}"> Add a New Category</a></ul></li>
         {% else %}
             <H1><B> Rango says...  hello somebody!</H1></B>
         {% endif %}
     </div>
-	<p>visits:{{visits}}</p>
+	<B><H2>Today, <p>visits: {{visits}}</p></B></H2>
     <div>
         {% if categories %}
             <h2><B>{{ "Most Liked Categories" }}</h2></B>
@@ -22,7 +22,7 @@
                 {% for category in categories %}
 
                     <li>
-                        <a href="{% url 'rango:show_category' category.slug %}">
+                        <a href="{% url 'show_category' category.slug %}">
                             {{ category.name }}
                         </a>
                     </li>
@@ -45,7 +45,7 @@
     </div>
 
     <div>
-            <a href="{% url 'rango:about'%}"About> </a><br />
+            <a href="{% url 'about'%}"About> </a><br />
 
 		</div>
 		<div>
